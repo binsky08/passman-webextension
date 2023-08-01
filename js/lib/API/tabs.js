@@ -59,15 +59,13 @@ API.tabs = {
             });
         }
     },
-    executeScript: function(tabId, details) {
+    executeScript: function(details) {
         if (API.promise) {
-            return API.api.tabs.executeScript(tabId, details);
+            return API.api.scripting.executeScript(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.tabs.executeScript(tabId, details, (function(result) {
-                    this.call_then(result);
-                }).bind(this));
+                API.api.scripting.executeScript(details);
             });
         }
     },
@@ -133,21 +131,21 @@ API.tabs = {
             });
         }
     },
-    insertCSS: function(tabId, details) {
+    insertCSS: function(details) {
         if (API.promise) {
-            return API.api.tabs.insertCSS(tabId, details);
+            return API.api.scripting.insertCSS(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.tabs.insertCSS(tabId, details, (function() {
+                API.api.scripting.insertCSS(details, (function() {
                     this.call_then();
                 }).bind(this));
             });
         }
     },
-    removeCSS: function(tabId, details) {
+    removeCSS: function(details) {
         if (API.promise) {
-            return API.api.tabs.removeCSS(tabId, details);
+            return API.api.scripting.removeCSS(details);
         }
         else {
             return new C_Promise(function() {

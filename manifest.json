@@ -2,7 +2,7 @@
   "name": "__MSG_extName__",
   "short_name": "__MSG_extName__",
   "version": "2.1.2",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "author": "Sander Brand",
   "default_locale": "en",
   "description": "__MSG_extDescription__",
@@ -14,9 +14,7 @@
     "64": "icons/icon64.png",
     "128": "icons/icon128.png"
   },
-  "externally_connectable": {
-    "ids": []
-  },
+  "externally_connectable": {},
   "background": {
     "scripts": [
       "/js/vendor/jquery/jquery.js",
@@ -43,15 +41,16 @@
       "/js/background/service/contextMenu.js",
       "/js/background/service/background.js",
       "/js/background/service/httpAuth.js"
-    ]
+    ],
+    "persistent": false
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icons/icon19.png",
     "default_title": "Passman",
     "default_popup": "/html/browser_action/browser_action.html"
   },
   "commands":{
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "windows": "Alt+Down",
         "mac": "Alt+Down",
@@ -61,14 +60,17 @@
     }
   },
   "permissions": [
-    "*://*/*",
     "notifications",
     "tabs",
     "clipboardWrite",
+    "scripting",
     "storage",
     "contextMenus",
     "webRequest",
     "webRequestBlocking"
+  ],
+  "host_permissions": [
+    "*://*/*"
   ],
   "content_scripts": [
     {
@@ -77,7 +79,6 @@
         "https://*/*"
       ],
       "all_frames": true,
-      "jsBuild": [],
       "js": [
         "/js/lib/promise.js",
         "/js/vendor/sjcl/sjcl.js",
@@ -101,6 +102,26 @@
     }
   ],
   "web_accessible_resources": [
-    "html/inject/doorhanger.html", "html/inject/password_picker.html", "html/inject/auto_login.html", "fonts/*","icons/*"
+    {
+      "resources": [ "html/inject/doorhanger.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "html/inject/password_picker.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "html/inject/auto_login.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "fonts/*" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "icons/*" ],
+      "extension_ids": ["*"],
+      "matches": [ "*://*/*" ]
+    }
   ]
 }

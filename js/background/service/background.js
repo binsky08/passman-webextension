@@ -719,7 +719,7 @@ var background = (function () {
     storage.get('master_password').then(function (password) {
         if (password) {
             master_password = password;
-            API.api.browserAction.setBadgeBackgroundColor({
+            API.browserAction.setBadgeBackgroundColor({
                 color: defaultColor
             });
         }

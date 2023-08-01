@@ -15,7 +15,7 @@ API.extension = {
         return API.api.extension.getViews(fetchProperties);
     },
     getBackgroundPage: function() {
-        return API.api.extension.getBackgroundPage();
+        return API.api.runtime.getBackgroundPage();
     },
     isAllowedIncognitoAccess: function() {
         if (API.promise) {
