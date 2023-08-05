@@ -8,14 +8,14 @@
 /* global API */
 
 API.browserAction = {
-    setTitle: API.api.browserAction.setTitle,
+    setTitle: API.api.action.setTitle,
     getTitle: function(details) {
         if (API.promise) {
-            return API.api.browserAction.getTitle(details);
+            return API.api.action.getTitle(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.browserAction.getTitle(details, (function(title) {
+                API.api.action.getTitle(details, (function(title) {
                     this.call_then(title);
                 }).bind(this));
             });
@@ -23,58 +23,58 @@ API.browserAction = {
     },
     setIcon: function(details) {
         if (API.promise) {
-            return API.api.browserAction.setIcon(details);
+            return API.api.action.setIcon(details);
         }
         else {
-            return new API.api.browserAction.setIcon(details, (function(){  
+            return new API.api.action.setIcon(details, (function(){
                 this.call_then();
             }).bind(this));
         }
     },
-    setPopup: API.api.browserAction.setPopup,
+    setPopup: API.api.action.setPopup,
     getPopup: function(details) {
         if (API.promise) {
-            return API.api.browserAction.getPopup(details);
+            return API.api.action.getPopup(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.browserAction.getPopup(details, (function(url) {
+                API.api.action.getPopup(details, (function(url) {
                     this.call_then(url);
                 }).bind(this));
             });
         }
     },
-    setBadgeText: API.api.browserAction.setBadgeText,
+    setBadgeText: API.api.action.setBadgeText,
     getBadgeText: function(details) {
         if (API.promise) {
-            return API.api.browserAction.getBadgeText(details);
+            return API.api.action.getBadgeText(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.browserAction.getBadgeText(details, (function(text) {
+                API.api.action.getBadgeText(details, (function(text) {
                     this.call_then(text);
                 }).bind(this));
             });
         }
     },
-    setBadgeBackgroundColor: API.api.browserAction.setBadgeBackgroundColor,
+    setBadgeBackgroundColor: API.api.action.setBadgeBackgroundColor,
     getBadgeBackgroundColor: function(details) {
         if (API.promise) {
-            return API.api.browserAction.getBadgeBackgroundColor(details);
+            return API.api.action.getBadgeBackgroundColor(details);
         }
         else {
             return new C_Promise(function() {
-                API.api.browserAction.getBadgeBackgroundColor(details, (function(colour) {
+                API.api.action.getBadgeBackgroundColor(details, (function(colour) {
                     this.call_then(colour);
                 }).bind(this));
             });
         }
     },
-    enable: API.api.browserAction.enable,
-    disable: API.api.browserAction.disable,
+    enable: API.api.action.enable,
+    disable: API.api.action.disable,
     
     /**
      * Events from now on
      */
-    onClicked: API.api.browserAction.onClicked
+    onClicked: API.api.action.onClicked
 };
