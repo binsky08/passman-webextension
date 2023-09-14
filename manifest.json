@@ -16,34 +16,10 @@
   },
   "externally_connectable": {},
   "background": {
-    "scripts": [
-      "/js/vendor/jquery/jquery.js",
-      "/js/lib/data/tlds.js",
-      "/js/lib/parseTLD.js",
-      "/js/lib/parseUrl.js",
-      "/js/vendor/sjcl/sjcl.js",
-      "/js/lib/promise.js",
-      "/js/lib/API/base.js",
-      "/js/lib/API/storage.js",
-      "/js/lib/API/runtime.js",
-      "/js/lib/API/i18n.js",
-      "/js/lib/API/notifications.js",
-      "/js/lib/API/cookies.js",
-      "/js/lib/API/browser_action.js",
-      "/js/lib/API/tabs.js",
-      "/js/lib/API/contextmenus.js",
-      "/js/lib/API/web_request.js",
-      "/js/lib/api.js",
-      "/js/lib/sharingAcl.js",
-      "/js/vendor/sha/sha.js",
-      "/js/lib/otp.js",
-      "/js/lib/passwordgen.js",
-      "/js/background/service/contextMenu.js",
-      "/js/background/service/background.js",
-      "/js/background/service/httpAuth.js"
-    ],
-    "persistent": false
+    "service_worker": "/js/background/service-worker.js",
+    "type": "module"
   },
+
   "action": {
     "default_icon": "icons/icon19.png",
     "default_title": "Passman",

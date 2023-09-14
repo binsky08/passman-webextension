@@ -17,13 +17,13 @@ var background = (function () {
 
     });
 
-    API.runtime.onInstalled.addListener(function () {
-        storage.get('settings').error(function () {
-            var prot = (typeof browser !== 'undefined') ? 'moz-extension' : 'chrome-extension';
-            var url = prot + '://' + API.runtime.id + '/html/browser_action/browser_action.html';
-            API.tabs.create({url: url});
-        });
-    });
+    // API.runtime.onInstalled.addListener(function () {
+    //     storage.get('settings').error(function () {
+    //         var prot = (typeof browser !== 'undefined') ? 'moz-extension' : 'chrome-extension';
+    //         var url = prot + '://' + API.runtime.id + '/html/browser_action/browser_action.html';
+    //         API.tabs.create({url: url});
+    //     });
+    // });
 
     var master_password = null;
 
@@ -173,12 +173,12 @@ var background = (function () {
 
     _self.saveSettings = saveSettings;
 
-    function resetSettings() {
-        storage.set('settings', {});
-        _self.settings = {};
-    }
+    // function resetSettings() {
+    //     storage.set('settings', {});
+    //     _self.settings = {};
+    // }
 
-    _self.resetSettings = resetSettings;
+    // _self.resetSettings = resetSettings;
 
 
     function getCredentials() {
@@ -624,20 +624,20 @@ var background = (function () {
 
     _self.closeSetupTab = closeSetupTab;
 
-    API.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+    // API.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
-        if (!msg || !msg.hasOwnProperty('method')) {
-            return;
-        }
-        var result = false;
-        if (_self[msg.method]) {
-            result = _self[msg.method](msg.args, sender);
-        } else {
-            console.warn('[NOT FOUND] Method call', msg.method, 'args: ', msg.args);
-        }
+    //     if (!msg || !msg.hasOwnProperty('method')) {
+    //         return;
+    //     }
+    //     var result = false;
+    //     if (_self[msg.method]) {
+    //         result = _self[msg.method](msg.args, sender);
+    //     } else {
+    //         console.warn('[NOT FOUND] Method call', msg.method, 'args: ', msg.args);
+    //     }
 
-        sendResponse(result);
-    });
+    //     sendResponse(result);
+    // });
 
     var defaultColor = '#0082c9';
 
