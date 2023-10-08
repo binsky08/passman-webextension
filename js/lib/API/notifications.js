@@ -20,16 +20,16 @@ API.notifications = {
     clear: API.api.notifications.clear,
 
     getAll: function () {
-        if (API.promise) {
-            return API.api.notifications.getAll(details);
-        }
-        else {
-            return new C_Promise(function () {
-                API.api.notifications.getAll(details, (function (notifications) {
-                    this.call_then(notifications);
-                }).bind(this));
-            });
-        }
+        return API.api.notifications.getAll(details);
+        //  if (API.promise) {
+        // }
+        // else {
+        //     return new C_Promise(function () {
+        //         API.api.notifications.getAll(details, (function (notifications) {
+        //             this.call_then(notifications);
+        //         }).bind(this));
+        //     });
+        // } 
     },
     /**
      * Event handlers from now on

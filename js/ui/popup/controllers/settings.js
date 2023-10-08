@@ -34,6 +34,7 @@
      */
     angular.module('passmanExtension')
         .controller('SettingsCtrl', ['$scope', 'notify', '$routeParams', function ($scope, notify, $routeParams) {
+            let API = $scope.getBrowserAPI();
             $scope.settings = {
                 accounts: [],
                 ignoreProtocol: true,

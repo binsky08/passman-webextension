@@ -18,28 +18,28 @@ API.extension = {
         return API.api.runtime.getBackgroundPage();
     },
     isAllowedIncognitoAccess: function() {
-        if (API.promise) {
-            return API.extension.isAllowedIncognitoAccess();
-        }
-        else {
-            return new C_Promise(function(){
-                API.extension.isAllowedIncognitoAccess((function(data){
-                    this.call_then(data);
-                }).bind(this));
-            });
-        }
+        return API.extension.isAllowedIncognitoAccess();
+        // if (API.promise) {
+        // }
+        // else {
+        //     return new C_Promise(function(){
+        //         API.extension.isAllowedIncognitoAccess((function(data){
+        //             this.call_then(data);
+        //         }).bind(this));
+        //     });
+        // }
     },
     isAllowedFileSchemeAccess: function() {
-        if (API.promise) {
-            return API.api.extension.isAllowedFileSchemeAccess();
-        }
-        else {
-            return new C_Promise(function(){
-                API.api.extension.isAllowedFileSchemeAccess((function(data){
-                    this.call_then(data);
-                }).bind(this));
-            });
-        }
+        return API.api.extension.isAllowedFileSchemeAccess();
+        // if (API.promise) {
+        // }
+        // else {
+        //     return new C_Promise(function(){
+        //         API.api.extension.isAllowedFileSchemeAccess((function(data){
+        //             this.call_then(data);
+        //         }).bind(this));
+        //     });
+        // }
     },
     setUpdateUrlData: function(data) {
         API.extension.setUpdateUrlData(data);

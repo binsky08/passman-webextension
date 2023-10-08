@@ -35,6 +35,7 @@
     angular.module('passmanExtension')
         .controller('ListCtrl', ['$scope', function ($scope) {
             $scope.app = 'passman';
+            let API = $scope.getBrowserAPI();
 
 
             /**

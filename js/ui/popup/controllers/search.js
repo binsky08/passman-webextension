@@ -34,6 +34,7 @@
      */
     angular.module('passmanExtension')
         .controller('SearchCtrl', ['$scope', function ($scope) {
+            let API = $scope.getBrowserAPI()
             API.runtime.sendMessage(API.runtime.id, {method: 'getMasterPasswordSet'}).then(function (MasterPasswordSet) {
                 if (!MasterPasswordSet) {
                     window.location = '#!/locked';

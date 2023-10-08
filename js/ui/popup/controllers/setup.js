@@ -35,6 +35,8 @@
     angular.module('passmanExtension')
         .controller('SetupCtrl', ['$scope', '$timeout', '$location', '$rootScope', 'StepsService', 'notify', 'HttpsTest',
             function ($scope, $timeout, $location, $rootScope, StepsService, notify, HttpsTest) {
+            let API = $scope.getBrowserAPI();
+
             $scope.settings = {
                 nextcloud_host: '',
                 nextcloud_username: '',

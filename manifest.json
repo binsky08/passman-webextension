@@ -14,12 +14,15 @@
     "64": "icons/icon64.png",
     "128": "icons/icon128.png"
   },
-  "externally_connectable": {},
-  "background": {
-    "service_worker": "/js/background/service-worker.js",
-    "type": "module"
+  "externally_connectable": {
+    "ids": [""]
   },
-
+  "background": {
+  "scripts": [
+    "/js/background/service-worker.js"
+  ],
+  "type": "module"
+  },
   "action": {
     "default_icon": "icons/icon19.png",
     "default_title": "Passman",
@@ -56,14 +59,15 @@
       ],
       "all_frames": true,
       "js": [
-        "/js/lib/promise.js",
         "/js/vendor/sjcl/sjcl.js",
+        "/js/vendor/jquery/jquery.js",
+        "/js/lib/promise.js",
         "/js/lib/API/base.js",
         "/js/lib/API/runtime.js",
         "/js/lib/API/extension.js",
+        "/js/lib/API/storage.js",
         "/js/lib/API/cookies.js",
         "/js/lib/API/i18n.js",
-        "/js/vendor/jquery/jquery.js",
         "/js/lib/jQuerytoObject.js",
         "/js/lib/findForm.js",
         "/js/lib/parseUrl.js",
