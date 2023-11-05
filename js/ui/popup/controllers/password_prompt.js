@@ -86,7 +86,7 @@
             };
 
             $scope.confirmedResetExtension = function () {
-                chrome.runtime.sendMessage(chrome.runtime.id, {method: 'resetSettings'}).then(function () {
+                API.runtime.sendMessage(API.runtime.id, {method: 'resetSettings'}).then(function () {
                     setTimeout(function () {
                         window.close();
                     }, 500);

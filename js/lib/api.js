@@ -1,15 +1,25 @@
-/* global sjcl */
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-window.PAPI = (function () {
-    var _encryptedFields = ['description', 'username', 'password', 'files', 'custom_fields', 'otp', 'email', 'tags', 'url'];
-    var encryption_config = {
+'use strict';
+
+// TODO importing sjcl to make encrypt|decrypt stuff
+// import sjcl from '../vendor/sjcl/sjcl.js';
+
+
+export function initPAPI() {
+    let _encryptedFields = ['description', 'username', 'password', 'files', 'custom_fields', 'otp', 'email', 'tags', 'url'];
+    let encryption_config = {
         adata: "",
         iter: 1000,
         ks: 256,
         mode: 'ccm',
         ts: 64
     };
-    var _API = {
+    let _API = {
         username: '',
         password: '',
         host: '',
@@ -184,7 +194,7 @@ window.PAPI = (function () {
         }
     };
 
-    var api_request = function (account, endpoint, method, data, callback) {
+    let api_request = function (account, endpoint, method, data, callback) {
 
         var host = (account.hasOwnProperty('nextcloud_host')) ? account.nextcloud_host : _API.host;
         var username = (account.hasOwnProperty('nextcloud_username')) ? account.nextcloud_username : _API.username;
@@ -249,4 +259,8 @@ window.PAPI = (function () {
     };
 
     return _API;
-}());
+}
+
+var PAPI = initPAPI();
+
+export {PAPI};

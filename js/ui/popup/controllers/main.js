@@ -45,9 +45,6 @@
                 return api;
             };
             let API = $scope.getBrowserAPI();
-
-console.log("main jsss - API:");
-console.log(API);
             
             var port = API.runtime.connect(null, {
                 name: "PassmanCommunication"

@@ -18,7 +18,6 @@ function onError(error) {
 }
 
 export function initStorage(API) {
-    
     var localStorage = API.api.storage.local;
 
     return {
@@ -91,7 +90,6 @@ export function initStorage(API) {
             //     });
             // }
         }
-        
     };
 };
 
@@ -100,15 +98,14 @@ export function initAPI() {
 
     /* jshint ignore:start */
     API.api;
-    API.promise = true;     // Chrome does not return promises
+    // API.promise = true;     // Chrome does not return promises
     /* jshint ignore:end */
 
     // Workaround chrome's uniqueness
     if (typeof browser === 'undefined') {
         API.api = chrome;
-        API.promise = false;
-    }
-    else{
+        // API.promise = false;
+    } else {
         API.api = browser;
     }
 
@@ -118,6 +115,5 @@ export function initAPI() {
 }
 
 var API = initAPI();
-
 
 export {API};
