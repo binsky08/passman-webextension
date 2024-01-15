@@ -72,41 +72,59 @@
             $scope.check = {
                 server: function (callback) {
                     if(!$scope.settings.nextcloud_host || !$scope.settings.nextcloud_username || !$scope.settings.nextcloud_password){
-                        $scope.errors.push(API.i18n.getMessage('invalid_server_settings'));
+                        let errors = API.i18n.getMessage('invalid_server_settings');
+                        $scope.errors.push(errors);
+                        notify(errors);
                         callback(false);
                         return;
                     }
                     $scope.settings.nextcloud_host = $scope.settings.nextcloud_host.replace(/\/$/, "");
-                    PAPI.host = $scope.settings.nextcloud_host;
-                    PAPI.username = $scope.settings.nextcloud_username;
-                    PAPI.password = $scope.settings.nextcloud_password;
-                    PAPI.getVaults(function (vaults) {
-                        if (vaults.hasOwnProperty('error')) {
-                            var errors = API.i18n.getMessage('invalid_response_from_server', [vaults.result.status, vaults.result.statusText]);
-                            $scope.errors.push(errors);
-                            notify(errors);
-                            callback(false);
+
+                    API.runtime.sendMessage(API.runtime.id, {
+                        method: "initNextcloudConnection",
+                        args: {
+                            host: $scope.settings.nextcloud_host,
+                            username: $scope.settings.nextcloud_username,
+                            password: $scope.settings.nextcloud_password,
                         }
-                        else {
-                            $scope.vaults = vaults;
-                            callback(true);
-                        }
-                        $scope.$apply();
+                    }).then((_) => {
+                        API.runtime.sendMessage(API.runtime.id, {
+                            method: "getVaults",
+                        }).then(function (vaults) {
+                            if (vaults.hasOwnProperty('error')) {
+                                let errors = API.i18n.getMessage('invalid_response_from_server', [vaults.result.status, vaults.result.statusText]);
+                                $scope.errors.push(errors);
+                                notify(errors);
+                                callback(false);
+                            } else {
+                                $scope.vaults = vaults;
+                                callback(true);
+                            }
+                            $scope.$apply();
+                        });
                     });
                 },
                 vault: function (callback) {
-                    try {
-                        PAPI.decryptString($scope.settings.default_vault.challenge_password, $scope.settings.vault_password);
-                        callback(true);
-                    }
-                    catch (e) {
-                        $scope.errors.push();
-                        notify(API.i18n.getMessage('invalid_vault_password'));
-                        callback(false);
-                    }
+                    API.runtime.sendMessage(API.runtime.id, {
+                        method: "decryptString",
+                        args: {
+                            challenge_password: $scope.settings.default_vault.challenge_password,
+                            vault_password: $scope.settings.vault_password
+                        }
+                    }).then(function (result) {
+                        if (result === '') {
+                            let errors = API.i18n.getMessage('invalid_vault_password');
+                            $scope.errors.push(errors);
+                            notify(errors);
+                            callback(false);
+                        } else {
+                            callback(true);
+                            $scope.$apply();
+                        }
+                    });
                 },
                 master: function (callback) {
-                    if($scope.settings.master_password !== $scope.settings.master_password_repeat){
+                    if ($scope.settings.master_password !== $scope.settings.master_password_repeat) {
                         notify(API.i18n.getMessage('no_password_match'));
                         callback(false);
                         return;
@@ -186,21 +204,20 @@
                 API.runtime.sendMessage(API.runtime.id, {
                     method: "setMasterPassword",
                     args: {password: master_password, savePassword: master_password_remember}
-                })
-                    .then(function () {
-                        API.runtime.sendMessage(API.runtime.id, {
-                            method: "saveSettings",
-                            args: settings
-                        }).then(function () {
-                            setTimeout(function () {
-                                $rootScope.setup = false;
-                                 API.runtime.sendMessage(API.runtime.id, {
-                                    method: "closeSetupTab"
-                                });
-                                $scope.saving = false;
-                            }, 750);
-                        });
+                }).then(function () {
+                    API.runtime.sendMessage(API.runtime.id, {
+                        method: "saveSettings",
+                        args: settings
+                    }).then(function () {
+                        setTimeout(function () {
+                            $rootScope.setup = false;
+                                API.runtime.sendMessage(API.runtime.id, {
+                                method: "closeSetupTab"
+                            });
+                            $scope.saving = false;
+                        }, 750);
                     });
+                });
 
 
             };

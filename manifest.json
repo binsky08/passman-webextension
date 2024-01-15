@@ -23,6 +23,11 @@
   ],
   "type": "module"
   },
+  // required changes for chrome
+  // "background": {
+  //   "service_worker": "/js/background/service-worker.js",
+  //   "type": "module"
+  // },
   "action": {
     "default_icon": "icons/icon19.png",
     "default_title": "Passman",
@@ -49,7 +54,8 @@
     "webRequestBlocking"
   ],
   "host_permissions": [
-    "*://*/*"
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {
@@ -59,7 +65,6 @@
       ],
       "all_frames": true,
       "js": [
-        "/js/vendor/sjcl/sjcl.js",
         "/js/vendor/jquery/jquery.js",
         "/js/lib/promise.js",
         "/js/lib/API/base.js",
