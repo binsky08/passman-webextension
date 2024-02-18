@@ -1,5 +1,7 @@
 /* global API */
 
+// import { initAPI } from "../../../lib/API/base";
+
 /**
  * Nextcloud - passman
  *
@@ -31,28 +33,41 @@
      * # CacheService
      * Service in the passmanApp.
      */
-    angular.module('passmanExtension')
-        .factory('Settings', ['$q', function ($q) {
-            var storage = new API.Storage();
-            var settings = {};
-            settings.set = function (key, value) {
-                storage.set(key, value);
-                settings[key] = value;
+    angular.module('passmanExtension').factory('Settings', ['$q', function ($q) {
+        
+        // let API = initAPI();
+        // let API = initAPI();
+        
+        // let API;
+        // if (typeof browser === 'undefined') {
+        //     API = chrome;
+        // } else{
+        //     API = browser;
+        // }
 
-            };
-            settings.setAll = function (_settings) {
-                storage.set('settings', _settings);
-            };
+        // var storage = new API.Storage();
+        // var storage = API.Storage;
+        //     var settings = {};
 
-            settings.getSettings = function (callback) {
-                storage.get('settings').then(function(keyValue) {
-                    callback(keyValue);
-                }).error(function () {
-                    callback(undefined);
-                });
-            };
+        //     settings.set = function (key, value) {
+        //         storage.set(key, value);
+        //         settings[key] = value;
 
-            return settings;
+        //     };
+        //     settings.setAll = function (_settings) {
+        //         storage.set('settings', _settings);
+        //     };
+
+        //     settings.getSettings = function (callback) {
+        //         storage.get('settings').then(function(keyValue) {
+        //             callback(keyValue);
+        //         }).error(function () {
+        //             callback(undefined);
+        //         });
+        //     };
+
+        //     return settings;
+        return true;
         }]);
 }());
 

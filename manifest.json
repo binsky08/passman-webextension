@@ -2,7 +2,7 @@
   "name": "__MSG_extName__",
   "short_name": "__MSG_extName__",
   "version": "2.1.2",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "author": "Sander Brand",
   "default_locale": "en",
   "description": "__MSG_extDescription__",
@@ -18,40 +18,23 @@
     "ids": [""]
   },
   "background": {
-    "scripts": [
-      "/js/vendor/jquery/jquery.js",
-      "/js/lib/data/tlds.js",
-      "/js/lib/parseTLD.js",
-      "/js/lib/parseUrl.js",
-      "/js/vendor/sjcl/sjcl.js",
-      "/js/lib/promise.js",
-      "/js/lib/API/base.js",
-      "/js/lib/API/storage.js",
-      "/js/lib/API/runtime.js",
-      "/js/lib/API/i18n.js",
-      "/js/lib/API/notifications.js",
-      "/js/lib/API/cookies.js",
-      "/js/lib/API/browser_action.js",
-      "/js/lib/API/tabs.js",
-      "/js/lib/API/contextmenus.js",
-      "/js/lib/API/web_request.js",
-      "/js/lib/api.js",
-      "/js/lib/sharingAcl.js",
-      "/js/vendor/sha/sha.js",
-      "/js/lib/otp.js",
-      "/js/lib/passwordgen.js",
-      "/js/background/service/contextMenu.js",
-      "/js/background/service/background.js",
-      "/js/background/service/httpAuth.js"
-    ]
+  "scripts": [
+    "/js/background/service-worker.js"
+  ],
+  "type": "module"
   },
-  "browser_action": {
+  // required changes for chrome
+  // "background": {
+  //   "service_worker": "/js/background/service-worker.js",
+  //   "type": "module"
+  // },
+  "action": {
     "default_icon": "icons/icon19.png",
     "default_title": "Passman",
     "default_popup": "/html/browser_action/browser_action.html"
   },
   "commands":{
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "windows": "Alt+Down",
         "mac": "Alt+Down",
@@ -61,14 +44,18 @@
     }
   },
   "permissions": [
-    "*://*/*",
     "notifications",
     "tabs",
     "clipboardWrite",
+    "scripting",
     "storage",
     "contextMenus",
     "webRequest",
     "webRequestBlocking"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {
@@ -78,14 +65,14 @@
       ],
       "all_frames": true,
       "js": [
+        "/js/vendor/jquery/jquery.js",
         "/js/lib/promise.js",
-        "/js/vendor/sjcl/sjcl.js",
         "/js/lib/API/base.js",
         "/js/lib/API/runtime.js",
         "/js/lib/API/extension.js",
+        "/js/lib/API/storage.js",
         "/js/lib/API/cookies.js",
         "/js/lib/API/i18n.js",
-        "/js/vendor/jquery/jquery.js",
         "/js/lib/jQuerytoObject.js",
         "/js/lib/findForm.js",
         "/js/lib/parseUrl.js",
@@ -100,6 +87,26 @@
     }
   ],
   "web_accessible_resources": [
-    "html/inject/doorhanger.html", "html/inject/password_picker.html", "html/inject/auto_login.html", "fonts/*","icons/*"
+    {
+      "resources": [ "html/inject/doorhanger.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "html/inject/password_picker.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "html/inject/auto_login.html" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "fonts/*" ],
+      "matches": [ "*://*/*" ]
+    },
+    {
+      "resources": [ "icons/*" ],
+      "extension_ids": ["*"],
+      "matches": [ "*://*/*" ]
+    }
   ]
 }

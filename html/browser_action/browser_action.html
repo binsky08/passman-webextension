@@ -7,30 +7,38 @@
         <script src="/js/vendor/bootstrap/bootstrap.js"></script>
         <script src="/js/vendor/angular/framework.js"></script>
 
+        <!-- <script src="/js/vendor/sjcl/sjcl.js"></script> -->
+        <script src="/js/vendor/sha/sha.js"></script>
+        <!-- <script src="/js/vendor/sjcl/sjcl.js" type="module"></script> -->
+        <script src="/js/lib/api.js" type="module"></script>
+
         <script src="/js/lib/promise.js"></script>
-        <script src="/js/lib/API/base.js"></script>
+        <!-- <script src="/js/lib/API/base.js"></script> -->
+        <!-- <script src="/js/lib/API/storage.js"></script> -->
+        
+        <script src="/js/lib/API/base.js" type="module"></script>
+        <!-- <script src="/js/lib/API/storage.js" type="module"></script> -->
+        <!-- <script src="/js/lib/API/base.js"></script>
         <script src="/js/lib/API/storage.js"></script>
         <script src="/js/lib/API/runtime.js"></script>
         <script src="/js/lib/API/tabs.js"></script>
         <script src="/js/lib/API/cookies.js"></script>
         <script src="/js/lib/API/extension.js"></script>
         <script src="/js/lib/API/i18n.js"></script>
-        <script src="/js/lib/API/notifications.js"></script>
+        <script src="/js/lib/API/notifications.js"></script> -->
         <script src="/js/lib/sharingAcl.js"></script>
         <script src="/js/lib/otp.js"></script>
         <script src="/js/lib/font-awesome.js"></script>
         <script src="/js/lib/passwordgen.js"></script>
-        <script src="/js/vendor/sjcl/sjcl.js"></script>
+        
+
         <script src="/js/vendor/angular-resource/angular-resource.js"></script>
 
         <script src="/js/vendor/angular-route/angular-route.js"></script>
         <script src="/js/vendor/angular-sanitize/angular-sanitize.js"></script>
         <script src="/js/vendor/angular-translate/angular-translate.js"></script>
         <script src="/js/vendor/angular-steps/angular-steps.js"></script>
-        <script src="/js/vendor/sha/sha.js"></script>
         <script src="/js/vendor/angular-notify/angular-notify.min.js"></script>
-
-        <script src="/js/lib/api.js"></script>
 
         <script src="/js/ui/popup/app.js"></script>
 
@@ -53,7 +61,7 @@
         <script src="/js/ui/popup/directives/autoFocus.js"></script>
         <script src="/js/ui/popup/filters/translate.js"></script>
 
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
         <link href="/css/vendor/bootstrap.css" media="all" rel="stylesheet" />
         <link href="/css/vendor/bootstrap-theme.css" media="all" rel="stylesheet" />
@@ -61,9 +69,8 @@
         <link href="/css/vendor/angular-notify.min.css" media="all" rel="stylesheet" />
         <link href="/css/vendor/materialdesignicons.min.css" media="all" rel="stylesheet" />
         <link href="/css/browser_action.css" media="all" rel="stylesheet" />
+
         <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
-
-
     </head>
     <body ng-controller="MainCtrl" ng-class="{'toggle': bodyOverflow, 'setup': setup}">
     <div id="wrapper" ng-class="{'toggled': menuIsOpen}">

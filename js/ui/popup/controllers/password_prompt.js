@@ -34,6 +34,7 @@
      */
     angular.module('passmanExtension')
         .controller('PasswordPromptCtrl', ['$scope', 'Settings', '$location', '$rootScope', function ($scope, Settings, $window, $rootScope) {
+            let API = $scope.getBrowserAPI();
             $scope.settings = {};
 
             API.runtime.sendMessage(API.runtime.id, {method: "getMasterPasswordSet"}).then(function (isSet) {

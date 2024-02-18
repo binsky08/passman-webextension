@@ -8,28 +8,28 @@
 
 API.runtime = {
     getBackgroundPage: function() {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.getBackgroundPage();
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.getBackgroundPage((function(backgroundPage){
-                    this.call_then(backgroundPage);
-                }).bind(this));
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.getBackgroundPage((function(backgroundPage){
+        //             this.call_then(backgroundPage);
+        //         }).bind(this));
+        //     });
+        // }
     },
     openOptionsPage: function() {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.openOptionsPage();
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.openOptionsPage((function() {
-                    this.call_then();
-                }).bind(this));
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.openOptionsPage((function() {
+        //             this.call_then();
+        //         }).bind(this));
+        //     });
+        // }
     },
     getManifest: function() {
         return API.api.runtime.getManifest();
@@ -38,40 +38,40 @@ API.runtime = {
         return API.api.runtime.getURL(url);
     },
     setUninstallURL: function(url) {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.setUninstallURL(url);
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.setUninstallURL(url, function() {
-                    if (typeof API.api.runtime.lastError !== "undefined") {
-                        this.call_error(API.api.runtime.lastError);
-                        return;
-                    }
-                    this.call_then();
-                });
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.setUninstallURL(url, function() {
+        //             if (typeof API.api.runtime.lastError !== "undefined") {
+        //                 this.call_error(API.api.runtime.lastError);
+        //                 return;
+        //             }
+        //             this.call_then();
+        //         });
+        //     });
+        // }
     },
     reload: function() {
         API.api.runtime.reload();
     },
     requestUpdateCheck: function() {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.requestUpdateCheck();
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.requestUpdateCheck((function(status, details) {
-                    this.call_then(status, details);
-                }).bind(this));
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.requestUpdateCheck((function(status, details) {
+        //             this.call_then(status, details);
+        //         }).bind(this));
+        //     });
+        // }
     },
     restart: function() {
-        if ( ! API.promise) {
+        // if ( ! API.promise) {
             API.api.runtime.restart();
-        }
+        // }
     },
     connect: function(extensionId, connectionInfo) {
         return API.api.runtime.connect(extensionId, connectionInfo);
@@ -80,41 +80,41 @@ API.runtime = {
         return API.api.runtime.connectNative(application);
     },
     sendMessage: function(extensionId, message, options) {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.sendMessage(extensionId, message, options);
-        }
-        else {
-            return new C_Promise(function(){
-                API.api.runtime.sendMessage(extensionId, message, options, (function(response) {
-                    this.call_then(response);
-                }).bind(this));
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function(){
+        //         API.api.runtime.sendMessage(extensionId, message, options, (function(response) {
+        //             this.call_then(response);
+        //         }).bind(this));
+        //     });
+        // }
     },
     sendNativeMessage: function(application, message) {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.sendNativeMessage(application, message);
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.sendNativeMessage(application, message, (function(response) {
-                    this.call_then(response);
-                }).bind(this));
-            });
-        }
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.sendNativeMessage(application, message, (function(response) {
+        //             this.call_then(response);
+        //         }).bind(this));
+        //     });
+        // }
     },
     getPlatformInfo: function() {
-        if (API.promise) {
+        // if (API.promise) {
             return API.api.runtime.getPlatformInfo();
-        }
-        else {
-            return new C_Promise(function() {
-                API.api.runtime.getPlatformInfo((function(info) {
-                    this.call_then(info);
-                }).bind(this));
-            });
-        }
-    },
+        // }
+        // else {
+        //     return new C_Promise(function() {
+        //         API.api.runtime.getPlatformInfo((function(info) {
+        //             this.call_then(info);
+        //         }).bind(this));
+        //     });
+        // }
+    }, 
     getBrowserInfo: function() {
         if (API.promise) {
             return API.api.runtime.getBrowserInfo();

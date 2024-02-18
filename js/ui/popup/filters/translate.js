@@ -35,6 +35,12 @@
     angular.module('passmanExtension')
         .filter("translate", function () {
             return function (value, args) {
+                let API;
+                if (typeof browser === 'undefined') {
+                    API = chrome;
+                } else{
+                    API = browser;
+                }
                 return API.i18n.getMessage(value,args);
             };
         });

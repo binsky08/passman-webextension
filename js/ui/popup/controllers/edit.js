@@ -34,6 +34,7 @@
      */
     angular.module('passmanExtension')
         .controller('EditCtrl', ['$scope', '$routeParams', '$timeout', 'notify', function ($scope, $routeParams, $timeout, notify) {
+            let API = $scope.getBrowserAPI();
             API.runtime.sendMessage(API.runtime.id, {
                 method: "getCredentialByGuid",
                 args: $routeParams.guid
